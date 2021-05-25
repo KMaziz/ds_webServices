@@ -1,0 +1,64 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+xmlns:tns="http://www.tekup.de/soap/models/whitetest"
+targetNamespace="http://www.tekup.de/soap/models/whitetest" elementFormDefault="qualified">
+ 
+    <xsd:element name="StudentRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="studentId" type="xsd:int"/>
+                <xsd:element name="examCode" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+
+    <xsd:element name="WhiteTestResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="student" type="tns:Student"/>
+                <xsd:element name="exam" type="tns:Exam"/>
+                <xsd:element name="date" type="xsd:dateTime"/>
+                <xsd:element name="error" type="xsd:string" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+ 
+    <xsd:complexType name="Student">
+        <xsd:sequence>
+			<xsd:element name="id" type="xsd:int"/>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="address" type="tns:Address"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="Address">
+        <xsd:sequence>
+            <xsd:element name="street" type="xsd:string"/>
+            <xsd:element name="city" type="xsd:string"/>
+            <xsd:element name="post-code" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+	<xsd:complexType name="Exam">
+        <xsd:sequence>
+			<xsd:element name="code" type="xsd:string"/>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="available" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="ExamRequest">
+        <xsd:complexType>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="ExamResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="ExamList" type="tns:Exam" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+
+</xsd:schema>
